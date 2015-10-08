@@ -195,7 +195,7 @@
 						<h2>Tiled Backgrounds</h2>
 						<pre><code style="word-wrap: break-word;">&lt;section data-background="image.png" data-background-repeat="repeat" data-background-size="100px"&gt;</code></pre>
 					</section> -->
-					<section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
+					<!-- <section data-background-video="https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.mp4,https://s3.amazonaws.com/static.slid.es/site/homepage/v1/homepage-video-editor.webm" data-background-color="#000000">
 						<div style="background-color: rgba(0, 0, 0, 0.9); color: #fff; padding: 20px;">
 							<h2>Video Backgrounds</h2>
 							<pre><code style="word-wrap: break-word;">&lt;section data-background-video="video.mp4,video.webm"&gt;</code></pre>
@@ -203,7 +203,7 @@
 					</section>
 					<section data-background="http://i.giphy.com/90F8aUepslB84.gif">
 						<h2>... and GIFs!</h2>
-					</section>
+					</section> -->
 				</section>
 
 				<!-- <section data-transition="slide" data-background="#4d7e65" data-background-transition="zoom">
@@ -223,21 +223,20 @@
 				</section> -->
 
 				<section>
-					<h2>Pretty Code</h2>
+					<h2>Calulating a vegetation index</h2>
 					<pre><code data-trim contenteditable>
 /**
- * Generate TGI values given RGB pixels.
- * @param {Array.<ol.Pixel>} pixels Input pixels (first has RGB values).
- * @param {Object} data User data object.
- * @return {ol.Pixel} Output pixel (first has TGI as only value).
+ * Calculate the Vegetation Greenness Index (VGI) from an input pixel.  This
+ * is a rough estimate assuming that pixel values correspond to reflectance.
+ * @param {ol.raster.Pixel} pixel An array of [R, G, B, A] values.
+ * @return {number} The VGI value for the given pixel.
  */
-function tgiOp(pixels, data) {
-  var pixel = pixels[0];
+function vgi(pixel) {
   var r = pixel[0] / 255;
   var g = pixel[1] / 255;
   var b = pixel[2] / 255;
-  var value = Math.floor((120 * (r - b) - (190 * (r - g))) / 2);
-  }
+  return (2 * g - r - b) / (2 * g + r + b);
+}
 					</code></pre>
 					
 				</section>
